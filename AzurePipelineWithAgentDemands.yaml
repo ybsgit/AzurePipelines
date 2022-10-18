@@ -1,0 +1,13 @@
+
+trigger:
+ - main
+
+
+pool:
+   name: 
+   demands:
+    - canfly -equals true
+
+
+steps:
+ - script: echo I can fly!!!
