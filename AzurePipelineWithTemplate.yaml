@@ -2,7 +2,7 @@ trigger:
  - main
 
 pool:
-  imageName: ubuntu-latest
+  imageName: windows-latest
 
 jobs:
   - job: work
