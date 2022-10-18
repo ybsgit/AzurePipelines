@@ -7,7 +7,7 @@ pool:
    name: az400m05l05a-pool
    demands:
     - canfly -equals true
-    - cansmim
+    - canswim
 
 steps:
  - script: echo I can fly!!!
