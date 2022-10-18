@@ -5,25 +5,22 @@ pool:
    vmImage: ubuntu-latest
 
 steps:
-  - 
-- task: AzureKeyVault@2
-  inputs:
-    azureSubscription: 'Pay-As-You-Go(8a235559-6309-4a29-bb22-ac5d1713c889)'
-    KeyVaultName: 'myvault0927'
-    SecretsFilter: '*'
-    RunAsPreJob: true
+  - task: AzureKeyVault@2
+    inputs:
+      azureSubscription: 'Pay-As-You-Go(8a235559-6309-4a29-bb22-ac5d1713c889)'
+      KeyVaultName: 'myvault0927'
+      SecretsFilter: '*'
+  - task: CmdLine@2
+    inputs:
+      script: 'echo $(mysec) > secret.txt'
 
-- task: CmdLine@2
-  inputs:
-    script: 'echo $(mysec) > secret.txt'
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'secret.txt'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: CopyFiles@2
-  inputs:
-    Contents: 'secret.txt'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
