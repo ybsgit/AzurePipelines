@@ -1,0 +1,14 @@
+trigger:
+ - main
+
+pool:
+  imageName: 'ubuntu-latest'
+
+jobs:
+  - job: work
+    steps:
+     - template: my-template-01.yaml
+
+  - job: play
+    steps: 
+      - template: my-template-02.yaml
